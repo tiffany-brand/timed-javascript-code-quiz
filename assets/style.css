@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Raleway, sans-serif;
+}
+
+header {
+    background-color: rgb(229, 188, 229);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+header a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: gray;
+}
+
+header .time {
+    font-weight: bold;
+}
+
+main .container {
+    width: 500px;
+    margin: 0 auto;
+    
+}
+
+main .container h1 {
+    font-size: 1.5rem;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+main .container p {
+    padding-bottom: 20px
+}
+
+main div.start-btn {
+    display: flex;
+    justify-content: center;
+}
+
+main div.start-btn button {
+    background-color: plum;
+    padding: 10px;
+    border: 2px solid purple;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+main div.start-btn button:hover {
+    background-color: rgb(235, 208, 235);
+}
+
+
+@media screen and (max-width: 768px) {
+ main .container {
+     width: 300px;
+ }
+}
