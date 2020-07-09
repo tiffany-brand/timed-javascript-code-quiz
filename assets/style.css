@@ -71,3 +71,45 @@ main div.start-btn button:hover {
      width: 300px;
  }
 }
+
+main .container .start-div {
+    display: block;
+}
+
+main .container .question-div {
+    display: none;
+}
+
+main .container .question-div .buttons {
+    margin-bottom: 10px;
+}
+
+main .container .question-div .buttons button {
+    display: block;
+    background-color: plum;
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid purple;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+main .container .question-div .buttons button:hover {
+    background-color: rgb(235, 208, 235);
+}
+
+main .container .question-div .right {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgb(181, 235, 181);
+    font-weight: bold;
+    font-style: italic;
+}
+
+main .container .question-div .wrong {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgb(235, 162, 162);
+    font-weight: bold;
+    font-style: italic;
+}
