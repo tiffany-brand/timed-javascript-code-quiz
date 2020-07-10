@@ -73,11 +73,11 @@ main div.start-btn button:hover {
 }
 
 main .container .start-div {
-    display: block;
+    display: none;
 }
 
 main .container .question-div {
-    display: none;
+    display: block;
 }
 
 main .container .question-div .buttons {
@@ -96,6 +96,11 @@ main .container .question-div .buttons button {
 
 main .container .question-div .buttons button:hover {
     background-color: rgb(235, 208, 235);
+}
+
+main .container .question-div #right-wrong {
+    display: none;
+    transition: 0.3s;
 }
 
 main .container .question-div .right {
