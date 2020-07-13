@@ -11,7 +11,7 @@
 <body>
     <header>
         <a href="#">Hall of Fame</a>
-        <div>Time Remaining: <span class="time">62</span></div>
+        <div>Time Remaining: <span id="time">60</span></div>
     </header>
 
     <main>
@@ -24,7 +24,7 @@
                     luck!
                 </p>
                 <div class="start-btn">
-                    <button>Start Quiz!</button>
+                    <button id="start">Start Quiz!</button>
                 </div>
             </div>
             <div class="question-div">
@@ -37,6 +37,13 @@
                 </div>
                 <hr>
                 <div id="right-wrong" class="right">Right!</div>
+            </div>
+            <div class="end-div">
+                <h1>Finished!</h1>
+                <h2>Your final score is: <span id="final-score">20</span></h2>
+                <label for="initials">Enter your initials:</label>
+                <input type="text" id="initials" />
+                <button id="submit">Submit</button>
             </div>
         </section>
     </main>

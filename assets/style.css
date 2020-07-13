@@ -27,7 +27,7 @@ header a:hover {
     color: gray;
 }
 
-header .time {
+header #time {
     font-weight: bold;
 }
 
@@ -73,11 +73,11 @@ main div.start-btn button:hover {
 }
 
 main .container .start-div {
-    display: none;
+    display: block;
 }
 
 main .container .question-div {
-    display: block;
+    display: none;
 }
 
 main .container .question-div .buttons {
@@ -117,4 +117,24 @@ main .container .question-div .wrong {
     background-color: rgb(235, 162, 162);
     font-weight: bold;
     font-style: italic;
+}
+
+main .container .end-div {
+    display: none;
+}
+
+main .container .end-div h2 {
+    padding-bottom: 20px;
+}
+
+main .container .end-div button {
+    background-color: plum;
+    padding: 2px 5px 2px 5px;
+    border: 2px solid purple;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+main .container .end-div button:hover {
+    background-color: rgb(235, 208, 235);
 }
