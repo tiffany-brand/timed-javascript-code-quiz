@@ -157,7 +157,13 @@ answerButtons.addEventListener("click", function () {
 function endQuiz() {
     clearInterval(timerInterval); // clears the timer interval
     timerEl.textContent = 0; // sets the timer display to 0
-    finalScoreEl.textContent = secondsLeft; // displays the seconds left as the score
+
+    // make sure score is not a negative number
+    if (secondsLeft < 0) {
+        secondsLeft = 0;
+    }
+
+    finalScoreEl.textContent = secondsLeft;// displays the seconds left as the score
     questionDivEl.setAttribute("style", "display: none;"); // hides the question div
     endDivEl.setAttribute("style", "display: block;"); // shows the end of quiz div
 
