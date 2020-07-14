@@ -47,12 +47,14 @@ const questionBank = [
 
 ];
 
+
 // initialize quiz variables
 
 let questionIdx = 0;  // tracks the current question
 let secondsLeft = 60; // tracks time left which also is the score
 let timerInterval; // pointer to timer interval
 
+// Quiz Functions
 
 // Starts the quiz when the Start Quiz button is clicked
 function startQuiz() {
@@ -94,6 +96,25 @@ function displayQuestion() {
     ans4El.textContent = currQuestion.possibleAns[3];
 }
 
+// loads the next question from the question bank
+function nextQuestion() {
+    // checks to see if there are more questions in question bank
+    // if there are more questions:
+    if (questionIdx < questionBank.length - 1) {
+        // increment the question index
+        questionIdx++;
+        // display the new question
+        displayQuestion();
+    } else {
+        // no more questions left
+        // display end screen after showing right or wrong for 0.5 second
+        setTimeout(function () {
+            endQuiz();
+        }, 500)
+
+    }
+}
+
 // checks answer and displays right or wrong
 function checkAnswer(answer) {
     if (questionBank[questionIdx].correctAns == answer) {
@@ -123,32 +144,14 @@ function checkAnswer(answer) {
 
 // Event listener for the four answer buttons - runs checkAnswer to check for right/wrong
 answerButtons.addEventListener("click", function () {
-    let element = event.target;
+    const element = event.target;
     if (element.matches("button")) {
-        console.log(element.value);
         checkAnswer(element.value);
     }
 })
 
 
-// loads the next question from the question bank
-function nextQuestion() {
-    // checks to see if there are more questions in question bank
-    // if there are more questions:
-    if (questionIdx < questionBank.length - 1) {
-        // increment the question index
-        questionIdx++;
-        // display the new question
-        displayQuestion();
-    } else {
-        // no more questions left
-        // display end screen after showing right or wrong for 0.5 second
-        setTimeout(function () {
-            endQuiz();
-        }, 500)
 
-    }
-}
 
 // End the quiz - when time runs out or there are no more questions, this function is called
 function endQuiz() {
@@ -162,8 +165,7 @@ function endQuiz() {
 
 // Hall of Fame 
 
-// initialize array to hold hall of fame listings - bojects containing initials and scores
-//  which will be loaded from localStorage
+// initialize array to hold hall of fame listings: objects containing initials and scores which will be loaded from localStorage
 
 let scores = [];
 
@@ -195,9 +197,10 @@ function renderScores() {
 
     // sort scores in order from highest to lowest
     scores.sort(compareScores);
+
     // render scores on page in LIs
     for (let i = 0; i < scores.length; i++) {
-        let li = document.createElement("li");
+        const li = document.createElement("li");
         li.textContent = `${scores[i].initials} - ${scores[i].score}`;
         scoresList.appendChild(li);
     }
@@ -269,7 +272,9 @@ scoreForm.addEventListener("submit", function () {
 
 // Event listener on Hall of Fame link at top of page to display the Hall of Fame screen
 hofLink.addEventListener("click", function () {
+    // clear timer if there is one
     clearInterval(timerInterval);
+    // render the hall of fame score listing on the screen
     renderScores();
 })
 
