@@ -1,3 +1,5 @@
+/* Page-wide styles */
+
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
 * {
@@ -10,12 +12,16 @@ body {
     font-family: Raleway, sans-serif;
 }
 
+/* Header - contains Hall of Fame link and timer */
+
 header {
     background-color: rgb(229, 188, 229);
     display: flex;
     justify-content: space-between;
     padding: 20px;
 }
+
+/* Hall of fame link */
 
 header div#hof {
     color: black;
@@ -28,14 +34,24 @@ header div#hof:hover {
     cursor: pointer;
 }
 
+/* Timer */
+
 header #time {
     font-weight: bold;
 }
+
+/* Main container to display start, question, end of quiz, and hall of fame divs */
 
 main .container {
     width: 500px;
     margin: 0 auto;
     
+}
+
+@media screen and (max-width: 768px) {
+ main .container {
+     width: 300px;
+ }
 }
 
 main .container h1 {
@@ -47,6 +63,12 @@ main .container h1 {
 
 main .container p {
     padding-bottom: 20px
+}
+
+/* Start screen div */
+
+main .container .start-div {
+    display: block;
 }
 
 main div.start-btn {
@@ -66,16 +88,7 @@ main div.start-btn button:hover {
     background-color: rgb(235, 208, 235);
 }
 
-
-@media screen and (max-width: 768px) {
- main .container {
-     width: 300px;
- }
-}
-
-main .container .start-div {
-    display: block;
-}
+/* Question screen div */
 
 main .container .question-div {
     display: none;
@@ -99,6 +112,8 @@ main .container .question-div .buttons button:hover {
     background-color: rgb(235, 208, 235);
 }
 
+/* Flash-messages Right or Wrong */
+
 main .container .question-div #right-wrong {
     display: none;
     transition: 0.3s;
@@ -120,6 +135,8 @@ main .container .question-div .wrong {
     font-style: italic;
 }
 
+/* End of quiz screen div */
+
 main .container .end-div {
     display: none;
 }
@@ -139,6 +156,8 @@ main .container .end-div button {
 main .container .end-div button:hover {
     background-color: rgb(235, 208, 235);
 }
+
+/* Hall of Fame screen div */
 
 main .container .hall-of-fame {
     display: none;

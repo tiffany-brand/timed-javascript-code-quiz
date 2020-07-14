@@ -9,13 +9,20 @@
 </head>
 
 <body>
+
+    <!-- Begin Header - displays Hall of Fame link and Timer -->
     <header>
         <div id="hof">Hall of Fame</div>
         <div>Time Remaining: <span id="time">60</span></div>
     </header>
+    <!-- End Header -->
+
 
     <main>
+        <!-- Begin Main Container - displays start, question, end of quiz, and hall of fame - one at a time -->
         <section class="container">
+
+            <!-- Start screen div -->
             <div class="start-div">
                 <h1>Coding Quiz-O-Rama!</h1>
                 <p>Test your basic coding knowlege with this JavaScript quiz! Answer each question - and be careful
@@ -27,6 +34,8 @@
                     <button id="start">Start Quiz!</button>
                 </div>
             </div>
+
+            <!-- Question div -->
             <div class="question-div">
                 <h1 id="question">What is your favorite color?</h1>
                 <div class="buttons">
@@ -38,6 +47,8 @@
                 <hr>
                 <div id="right-wrong" class="right">Right!</div>
             </div>
+
+            <!-- End of quiz div -->
             <div class="end-div">
                 <h1>Finished!</h1>
                 <h2>Your final score is: <span id="final-score"></span></h2>
@@ -48,6 +59,8 @@
                 </form>
 
             </div>
+
+            <!-- Hall of Fame div -->
             <div class="hall-of-fame">
                 <h1>Hall of Fame</h1>
                 <ol id="scores-list"></ol>
@@ -56,8 +69,11 @@
                     <button id="clear">Clear Hall of Fame</button>
                 </div>
             </div>
+
         </section>
+        <!-- End Main container -->
     </main>
+
     <script src="./assets/script.js"></script>
 </body>
 
