@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <a href="#">Hall of Fame</a>
+        <div id="hof">Hall of Fame</div>
         <div>Time Remaining: <span id="time">60</span></div>
     </header>
 
@@ -40,10 +40,17 @@
             </div>
             <div class="end-div">
                 <h1>Finished!</h1>
-                <h2>Your final score is: <span id="final-score">20</span></h2>
-                <label for="initials">Enter your initials:</label>
-                <input type="text" id="initials" />
-                <button id="submit">Submit</button>
+                <h2>Your final score is: <span id="final-score"></span></h2>
+                <form id="score-form">
+                    <label for="initials">Enter your initials:</label>
+                    <input type="text" id="initials" />
+                    <button id="submit">Submit</button>
+                </form>
+
+            </div>
+            <div class="hall-of-fame">
+                <h1>Hall of Fame</h1>
+                <ol id="scores-list"></ol>
             </div>
         </section>
     </main>
