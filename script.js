@@ -1,23 +1,33 @@
-let timerEl = document.querySelector("#time");
-let startDivEl = document.querySelector(".start-div");
-let startButton = document.querySelector("button#start");
-let questionDivEl = document.querySelector(".question-div");
-let answerButtons = document.querySelector("div.buttons");
-let questionEl = document.querySelector("#question");
-let ans1El = document.querySelector("#ans-1")
-let ans2El = document.querySelector("#ans-2")
-let ans3El = document.querySelector("#ans-3")
-let ans4El = document.querySelector("#ans-4")
-let rightWrongEl = document.querySelector("#right-wrong");
-let endDivEl = document.querySelector(".end-div");
-let finalScoreEl = document.querySelector("#final-score");
-let scoreForm = document.querySelector("#score-form");
-let initialsInput = document.querySelector("#initials");
-let scoresList = document.querySelector("#scores-list");
-let hallOfFame = document.querySelector(".hall-of-fame");
-let hofLink = document.querySelector("div#hof");
+// Selectors for page elements
 
+// Quiz Elements:
+const timerEl = document.querySelector("#time");
+const startDivEl = document.querySelector(".start-div");
+const startButton = document.querySelector("button#start");
+const questionDivEl = document.querySelector(".question-div");
+const answerButtons = document.querySelector("div.buttons");
+const questionEl = document.querySelector("#question");
+const ans1El = document.querySelector("#ans-1")
+const ans2El = document.querySelector("#ans-2")
+const ans3El = document.querySelector("#ans-3")
+const ans4El = document.querySelector("#ans-4")
+const rightWrongEl = document.querySelector("#right-wrong");
 
+// End of quiz elements:
+const endDivEl = document.querySelector(".end-div");
+const finalScoreEl = document.querySelector("#final-score");
+const scoreForm = document.querySelector("#score-form");
+const initialsInput = document.querySelector("#initials");
+
+// Hall of Fame elements:
+const scoresList = document.querySelector("#scores-list");
+const hallOfFame = document.querySelector(".hall-of-fame");
+const hofLink = document.querySelector("div#hof");
+const clearHofBtn = document.querySelector("#clear");
+const goBackHofBtn = document.querySelector("button#go-back");
+
+// Quiz question bank. Questions sourced from:
+// W3Schools JavaScript Quiz: https://www.w3schools.com/js/js_quiz.asp
 const questionBank = [
     {
         question: "An if statement is an example of a...",
@@ -28,49 +38,66 @@ const questionBank = [
         question: "How do you write 'Hello World' in an alert box?",
         possibleAns: ["a. alert('Hello World');", "b. alertBox('Hello World');", "c. msg('Hello World');", "d. msgBox('Hello World');"],
         correctAns: 0
+    },
+    {
+        question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
+        possibleAns: ["a. <script href='xxx.js'>", "b. <script name='xxx.js'>", "c. <script value='xxx.js'>", "d. <script src='xxx.js'>"],
+        correctAns: 3
     }
+
 ];
 
-let questionIdx = 0;
-let secondsLeft = 60;
-let timerInterval;
+// initialize quiz variables
 
+let questionIdx = 0;  // tracks the current question
+let secondsLeft = 60; // tracks time left which also is the score
+let timerInterval; // pointer to timer interval
+
+
+// Starts the quiz when the Start Quiz button is clicked
 function startQuiz() {
-    // hide start page
+    // hide start div
     startDivEl.setAttribute("style", "display: none;");
-    // display first question
+    // load first question from question bank
     displayQuestion();
+    // show question div
     questionDivEl.setAttribute("style", "display: block;");
     // start timer
     startTimer();
 }
 
+// Event listener to start the quiz when the Start Quiz button is clicked
+startButton.addEventListener("click", startQuiz);
+
+// Starts the timer interval and displays time remaining on screen
 function startTimer() {
     timerInterval = setInterval(function () {
-        secondsLeft--;
-        timerEl.textContent = secondsLeft;
-
+        secondsLeft--; // decrements time left
+        timerEl.textContent = secondsLeft; // displays time left on top of screen
+        // when timer runs out
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            // call end quiz function
+            // end the quiz
             endQuiz();
         }
     }, 1000)
 }
 
+// loads question into html elements
 function displayQuestion() {
-    currQuestion = questionBank[questionIdx];
-    questionEl.textContent = currQuestion.question;
+    currQuestion = questionBank[questionIdx]; // loads the current question from question bank
+    questionEl.textContent = currQuestion.question; // puts question in the question heading
+    // puts possible answers into answer buttons
     ans1El.textContent = currQuestion.possibleAns[0];
     ans2El.textContent = currQuestion.possibleAns[1];
     ans3El.textContent = currQuestion.possibleAns[2];
     ans4El.textContent = currQuestion.possibleAns[3];
 }
 
+// checks answer and displays right or wrong
 function checkAnswer(answer) {
     if (questionBank[questionIdx].correctAns == answer) {
-        // right
-
+        // answer is right
         // flash right message for 1 second
         rightWrongEl.setAttribute("class", "right");
         rightWrongEl.textContent = "Right!";
@@ -78,55 +105,70 @@ function checkAnswer(answer) {
         setTimeout(function () {
             rightWrongEl.setAttribute("style", "display: none;");
         }, 1000);
-        console.log("right");
     } else {
-        // wrong
-
+        // answer is wrong
         // subtract time from clock
         secondsLeft -= 10;
-        // flash wrong message for x seconds
+        // flash wrong message for 1 second
         rightWrongEl.setAttribute("class", "wrong")
         rightWrongEl.textContent = "Wrong.";
         rightWrongEl.setAttribute("style", "display: block;");
         setTimeout(function () {
             rightWrongEl.setAttribute("style", "display: none;");
         }, 1000);
-        console.log("wrong");
     }
-
+    // loads the next question
     nextQuestion();
 }
 
+// Event listener for the four answer buttons - runs checkAnswer to check for right/wrong
+answerButtons.addEventListener("click", function () {
+    let element = event.target;
+    if (element.matches("button")) {
+        console.log(element.value);
+        checkAnswer(element.value);
+    }
+})
+
+
+// loads the next question from the question bank
 function nextQuestion() {
+    // checks to see if there are more questions in question bank
+    // if there are more questions:
     if (questionIdx < questionBank.length - 1) {
-        // increment questionId
+        // increment the question index
         questionIdx++;
-        // call displayQuestion(questionId)
+        // display the new question
         displayQuestion();
     } else {
-        // display end screen after showing right or wrong
+        // no more questions left
+        // display end screen after showing right or wrong for 0.5 second
         setTimeout(function () {
             endQuiz();
-        }, 1000)
+        }, 500)
 
     }
 }
 
+// End the quiz - when time runs out or there are no more questions, this function is called
 function endQuiz() {
-    clearInterval(timerInterval);
-    timerEl.textContent = 0;
-    finalScoreEl.textContent = secondsLeft;
-    questionDivEl.setAttribute("style", "display: none;");
-    endDivEl.setAttribute("style", "display: block;");
+    clearInterval(timerInterval); // clears the timer interval
+    timerEl.textContent = 0; // sets the timer display to 0
+    finalScoreEl.textContent = secondsLeft; // displays the seconds left as the score
+    questionDivEl.setAttribute("style", "display: none;"); // hides the question div
+    endDivEl.setAttribute("style", "display: block;"); // shows the end of quiz div
 
 }
 
 // Hall of Fame 
 
+// initialize array to hold hall of fame listings - bojects containing initials and scores
+//  which will be loaded from localStorage
+
 let scores = [];
 
-// Function used to compare scores in order to sort them in decending order
-// Object sorting code and explanation found at Quick Tip: How to Sort and Array of Objects
+// Helper function used to compare scores in order to sort them in decending order
+// Object sorting code found at Quick Tip: How to Sort and Array of Objects
 // in JavaScript https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
 function compareScores(a, b) {
     const score1 = a.score;
@@ -141,8 +183,9 @@ function compareScores(a, b) {
     return compare;
 }
 
+// displays score ranking on Hall of Fame screen
 function renderScores() {
-    // hide other screens 
+    // hide other divs - question, end, start 
     questionDivEl.setAttribute("style", "display: none;");
     endDivEl.setAttribute("style", "display: none;");
     startDivEl.setAttribute("style", "display: none;");
@@ -158,59 +201,84 @@ function renderScores() {
         li.textContent = `${scores[i].initials} - ${scores[i].score}`;
         scoresList.appendChild(li);
     }
-    // show Hall of Fame Screen
+    // show Hall of Fame div
     hallOfFame.setAttribute("style", "display: block;");
-
 }
 
+// updates localStorage with content of scores array
 function storeScore() {
-    // add initials and score
     localStorage.setItem("scores", JSON.stringify(scores));
 }
 
+// checks for scores in localStorage and loads them into scores array
 function loadScores() {
-    // check for scores in local Storage
     const storedScores = JSON.parse(localStorage.getItem("scores"));
     if (storedScores) {
         scores = storedScores;
     }
-
 }
-
-scoreForm.addEventListener("submit", function () {
-    event.preventDefault();
-    let initials = initialsInput.value.trim();
-
-    if (!initials) {
-        return;
-    }
-
-
-    let initialsScore = { initials: initials, score: secondsLeft };
-
-    scores.push(initialsScore);
-
-    storeScore();
-    renderScores();
-})
-
 
 // Load any high scores from local Storage before beginning the quiz
 loadScores();
 
-answerButtons.addEventListener("click", function () {
-    let element = event.target;
-    if (element.matches("button")) {
-        console.log(element.value);
-        checkAnswer(element.value);
-    }
-})
+// Click listeners on Hall of Fame buttons
 
-hofLink.addEventListener("click", function () {
+// Clear the Hall of Fame listing of all scores button
+clearHofBtn.addEventListener("click", function () {
+    localStorage.clear();
+    scores = [];
     renderScores();
 })
 
-startButton.addEventListener("click", startQuiz);
+// Go back to the start screen button
+goBackHofBtn.addEventListener("click", function () {
+    // clear timer
+    clearInterval(timerInterval);
+    // initialize quiz variables
+    questionIdx = 0;
+    secondsLeft = 60;
+    // display seconds left
+    timerEl.textContent = secondsLeft;
+    // hide Hall of Fame div and show Start div
+    hallOfFame.setAttribute("style", "display: none;");
+    startDivEl.setAttribute("style", "display: block;");
+})
+
+// Event listener for submitting Hall of Fame listing - initials and score
+scoreForm.addEventListener("submit", function () {
+    event.preventDefault();
+    const initials = initialsInput.value.trim();
+    // check to make sure form is not blank
+    if (!initials) {
+        return;
+    }
+    // create object with initials and score 
+    const initialsScore = { initials: initials, score: secondsLeft };
+
+    // add initials and score to scores array
+    scores.push(initialsScore);
+
+    // clear initials text input
+    initialsInput.value = "";
+
+    // update localStorage with scores array
+    storeScore();
+    // display Hall of Fame with scores listing
+    renderScores();
+})
+
+// Event listener on Hall of Fame link at top of page to display the Hall of Fame screen
+hofLink.addEventListener("click", function () {
+    clearInterval(timerInterval);
+    renderScores();
+})
+
+
+
+
+
+
+
 
 
 
