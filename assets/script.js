@@ -43,6 +43,21 @@ const questionBank = [
         question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
         possibleAns: ["a. <script href='xxx.js'>", "b. <script name='xxx.js'>", "c. <script value='xxx.js'>", "d. <script src='xxx.js'>"],
         correctAns: 3
+    },
+    {
+        question: "How do you create a function in JavaScript?",
+        possibleAns: ["a. function = myFunction()", "b. function myFunction()", "c. function:myFunction()", "d. function=myFunction"],
+        correctAns: 1
+    },
+    {
+        question: "How do you write an IF statement in Javascript?",
+        possibleAns: ["a. if (i === 5)", "b. if i = 5", "c. if i == 5 then", "d. if i = 5 then"],
+        correctAns: 0
+    },
+    {
+        question: "How do you write an IF statement for executing some code if 'i' is NOT equal to 5",
+        possibleAns: ["a. if (i <> 5)", "b. if i =! 5 then", "c. if (i !== 5)", "d. if i <> 5"],
+        correctAns: 2
     }
 
 ];
