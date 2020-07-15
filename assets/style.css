@@ -61,14 +61,18 @@ main .container h1 {
     text-align: center;
 }
 
-main .container p {
-    padding-bottom: 20px
-}
+
 
 /* Start screen div */
 
 main .container .start-div {
     display: block;
+}
+
+main .container .start-div p {
+    padding-bottom: 20px;
+    line-height: 1.5;
+    font-size: 1.2rem;
 }
 
 main div.start-btn {
@@ -78,6 +82,7 @@ main div.start-btn {
 
 main div.start-btn button {
     background-color: plum;
+    font-size: 1.2rem;
     padding: 10px;
     border: 2px solid purple;
     border-radius: 5px;
@@ -100,6 +105,7 @@ main .container .question-div .buttons {
 
 main .container .question-div .buttons button {
     display: block;
+    font-size: 2rem;
     background-color: plum;
     padding: 10px;
     margin: 5px;
@@ -166,7 +172,7 @@ main .container .hall-of-fame {
 main .container .hall-of-fame ol li {
     padding: 10px 10px 10px 20px;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.5rem;
 }
 
 main .container .hall-of-fame ol li:nth-child(odd) {
@@ -183,6 +189,7 @@ main .container .hall-of-fame div#hof-btns {
 
 main .container .hall-of-fame div#hof-btns button {
     background-color: plum;
+    font-size: 1.2rem;
     padding: 2px 5px 2px 5px;
     border: 2px solid purple;
     border-radius: 5px;
