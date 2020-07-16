@@ -1,29 +1,25 @@
 // Selectors for page elements
 
 // Quiz Elements:
-const timerEl = document.querySelector("#time");
-const startDivEl = document.querySelector(".start-div");
+const timerEl = document.querySelector("header span#time");
+const startDivEl = document.querySelector("div.start-div");
 const startButton = document.querySelector("button#start");
-const questionDivEl = document.querySelector(".question-div");
+const questionDivEl = document.querySelector("div.question-div");
 const answerButtons = document.querySelector("div.buttons");
-const questionEl = document.querySelector("#question");
-const ans1El = document.querySelector("#ans-1")
-const ans2El = document.querySelector("#ans-2")
-const ans3El = document.querySelector("#ans-3")
-const ans4El = document.querySelector("#ans-4")
-const rightWrongEl = document.querySelector("#right-wrong");
+const questionEl = document.querySelector("h1#question");
+const rightWrongEl = document.querySelector("div#right-wrong");
 
 // End of quiz elements:
-const endDivEl = document.querySelector(".end-div");
-const finalScoreEl = document.querySelector("#final-score");
-const scoreForm = document.querySelector("#score-form");
-const initialsInput = document.querySelector("#initials");
+const endDivEl = document.querySelector("div.end-div");
+const finalScoreEl = document.querySelector("h2 span#final-score");
+const scoreForm = document.querySelector("form#score-form");
+const initialsInput = document.querySelector("input#initials");
 
 // Hall of Fame elements:
-const scoresList = document.querySelector("#scores-list");
-const hallOfFame = document.querySelector(".hall-of-fame");
-const hofLink = document.querySelector("div#hof");
-const clearHofBtn = document.querySelector("#clear");
+const hofLink = document.querySelector("header div#hof");
+const hallOfFame = document.querySelector("div.hall-of-fame");
+const scoresList = document.querySelector("ol#scores-list");
+const clearHofBtn = document.querySelector("button#clear");
 const goBackHofBtn = document.querySelector("button#go-back");
 
 // Quiz question bank. Questions sourced from:
@@ -71,20 +67,34 @@ let timerInterval; // pointer to timer interval
 
 // Quiz Functions
 
-// Starts the quiz when the Start Quiz button is clicked
-function startQuiz() {
-    // hide start div
-    startDivEl.setAttribute("style", "display: none;");
-    // load first question from question bank
-    displayQuestion();
-    // show question div
-    questionDivEl.setAttribute("style", "display: block;");
-    // start timer
-    startTimer();
+
+// loads question into html elements
+function displayQuestion() {
+    const currQuestion = questionBank[questionIdx]; // loads the current question from question bank
+    questionEl.textContent = currQuestion.question; // puts question in the question heading
+    // puts possible answers into answer buttons
+    const possibleAnswers = currQuestion.possibleAns;
+    for (let i = 0; i < possibleAnswers.length; i++) {
+        answerButtons.children[i].textContent = possibleAnswers[i];
+    }
 }
 
-// Event listener to start the quiz when the Start Quiz button is clicked
-startButton.addEventListener("click", startQuiz);
+
+// End the quiz - when time runs out or there are no more questions, this function is called
+function endQuiz() {
+    clearInterval(timerInterval); // clears the timer interval
+    timerEl.textContent = 0; // sets the timer display to 0
+
+    // make sure score is not a negative number
+    if (secondsLeft < 0) {
+        secondsLeft = 0;
+    }
+
+    finalScoreEl.textContent = secondsLeft;// displays the seconds left as the score
+    questionDivEl.setAttribute("style", "display: none;"); // hides the question div
+    endDivEl.setAttribute("style", "display: block;"); // shows the end of quiz div
+
+}
 
 // Starts the timer interval and displays time remaining on screen
 function startTimer() {
@@ -100,16 +110,21 @@ function startTimer() {
     }, 1000)
 }
 
-// loads question into html elements
-function displayQuestion() {
-    currQuestion = questionBank[questionIdx]; // loads the current question from question bank
-    questionEl.textContent = currQuestion.question; // puts question in the question heading
-    // puts possible answers into answer buttons
-    ans1El.textContent = currQuestion.possibleAns[0];
-    ans2El.textContent = currQuestion.possibleAns[1];
-    ans3El.textContent = currQuestion.possibleAns[2];
-    ans4El.textContent = currQuestion.possibleAns[3];
+// Starts the quiz when the Start Quiz button is clicked
+function startQuiz() {
+    // hide start div
+    startDivEl.setAttribute("style", "display: none;");
+    // load first question from question bank
+    displayQuestion();
+    // show question div
+    questionDivEl.setAttribute("style", "display: block;");
+    // start timer
+    startTimer();
 }
+
+// Event listener to start the quiz when the Start Quiz button is clicked
+startButton.addEventListener("click", startQuiz);
+
 
 // loads the next question from the question bank
 function nextQuestion() {
@@ -166,23 +181,6 @@ answerButtons.addEventListener("click", function () {
 })
 
 
-
-
-// End the quiz - when time runs out or there are no more questions, this function is called
-function endQuiz() {
-    clearInterval(timerInterval); // clears the timer interval
-    timerEl.textContent = 0; // sets the timer display to 0
-
-    // make sure score is not a negative number
-    if (secondsLeft < 0) {
-        secondsLeft = 0;
-    }
-
-    finalScoreEl.textContent = secondsLeft;// displays the seconds left as the score
-    questionDivEl.setAttribute("style", "display: none;"); // hides the question div
-    endDivEl.setAttribute("style", "display: block;"); // shows the end of quiz div
-
-}
 
 // Hall of Fame 
 
