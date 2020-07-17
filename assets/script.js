@@ -64,6 +64,7 @@ const questionBank = [
 let questionIdx = 0;  // tracks the current question
 let secondsLeft = 60; // tracks time left which also is the score
 let timerInterval; // pointer to timer interval
+let flashTimeout; // pointer to timeout for right/wrong flash messages
 
 // Helper functions to hide and show elements
 
@@ -160,10 +161,11 @@ function checkAnswer(answer) {
     if (questionBank[questionIdx].correctAns == answer) {
         // answer is right
         // flash right message for 1 second
+        clearTimeout(flashTimeout);
         rightWrongEl.setAttribute("class", "right");
         rightWrongEl.textContent = "Right!";
         show(rightWrongEl);
-        setTimeout(function () {
+        flashTimeout = setTimeout(function () {
             hide(rightWrongEl);
         }, 1000);
     } else {
@@ -171,10 +173,11 @@ function checkAnswer(answer) {
         // subtract time from clock
         secondsLeft -= 10;
         // flash wrong message for 1 second
+        clearTimeout(flashTimeout);
         rightWrongEl.setAttribute("class", "wrong")
         rightWrongEl.textContent = "Wrong.";
         show(rightWrongEl);
-        setTimeout(function () {
+        flashTimeout = setTimeout(function () {
             hide(rightWrongEl);
         }, 1000);
     }
@@ -199,19 +202,8 @@ answerButtons.addEventListener("click", function () {
 let scores = [];
 
 // Helper function used to compare scores in order to sort them in decending order
-// Object sorting code found at Quick Tip: How to Sort and Array of Objects
-// in JavaScript https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
 function compareScores(a, b) {
-    const score1 = a.score;
-    const score2 = b.score;
-
-    let compare = 0;
-    if (score1 < score2) {
-        compare = 1;
-    } else if (score1 > score2) {
-        compare = -1
-    };
-    return compare;
+    return b.score - a.score;
 }
 
 // displays score ranking on Hall of Fame screen
