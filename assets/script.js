@@ -65,8 +65,18 @@ let questionIdx = 0;  // tracks the current question
 let secondsLeft = 60; // tracks time left which also is the score
 let timerInterval; // pointer to timer interval
 
-// Quiz Functions
+// Helper functions to hide and show elements
 
+function hide(element) {
+    element.setAttribute("style", "display: none;");
+}
+
+function show(element) {
+    element.setAttribute("style", "display: block;");
+}
+
+
+// Quiz Functions
 
 // loads question into html elements
 function displayQuestion() {
@@ -91,8 +101,8 @@ function endQuiz() {
     }
 
     finalScoreEl.textContent = secondsLeft;// displays the seconds left as the score
-    questionDivEl.setAttribute("style", "display: none;"); // hides the question div
-    endDivEl.setAttribute("style", "display: block;"); // shows the end of quiz div
+    hide(questionDivEl); // hides the question div
+    show(endDivEl); // shows the end of quiz div
 
 }
 
@@ -113,11 +123,11 @@ function startTimer() {
 // Starts the quiz when the Start Quiz button is clicked
 function startQuiz() {
     // hide start div
-    startDivEl.setAttribute("style", "display: none;");
+    hide(startDivEl);
     // load first question from question bank
     displayQuestion();
     // show question div
-    questionDivEl.setAttribute("style", "display: block;");
+    show(questionDivEl);
     // start timer
     startTimer();
 }
@@ -152,9 +162,9 @@ function checkAnswer(answer) {
         // flash right message for 1 second
         rightWrongEl.setAttribute("class", "right");
         rightWrongEl.textContent = "Right!";
-        rightWrongEl.setAttribute("style", "display: block;");
+        show(rightWrongEl);
         setTimeout(function () {
-            rightWrongEl.setAttribute("style", "display: none;");
+            hide(rightWrongEl);
         }, 1000);
     } else {
         // answer is wrong
@@ -163,9 +173,9 @@ function checkAnswer(answer) {
         // flash wrong message for 1 second
         rightWrongEl.setAttribute("class", "wrong")
         rightWrongEl.textContent = "Wrong.";
-        rightWrongEl.setAttribute("style", "display: block;");
+        show(rightWrongEl);
         setTimeout(function () {
-            rightWrongEl.setAttribute("style", "display: none;");
+            hide(rightWrongEl);
         }, 1000);
     }
     // loads the next question
@@ -207,9 +217,9 @@ function compareScores(a, b) {
 // displays score ranking on Hall of Fame screen
 function renderScores() {
     // hide other divs - question, end, start 
-    questionDivEl.setAttribute("style", "display: none;");
-    endDivEl.setAttribute("style", "display: none;");
-    startDivEl.setAttribute("style", "display: none;");
+    hide(questionDivEl);
+    hide(endDivEl);
+    hide(startDivEl);
 
     // clear current scores on page
     scoresList.innerHTML = "";
@@ -224,7 +234,7 @@ function renderScores() {
         scoresList.appendChild(li);
     }
     // show Hall of Fame div
-    hallOfFame.setAttribute("style", "display: block;");
+    show(hallOfFame);
 }
 
 // updates localStorage with content of scores array
@@ -262,8 +272,8 @@ goBackHofBtn.addEventListener("click", function () {
     // display seconds left
     timerEl.textContent = secondsLeft;
     // hide Hall of Fame div and show Start div
-    hallOfFame.setAttribute("style", "display: none;");
-    startDivEl.setAttribute("style", "display: block;");
+    hide(hallOfFame);
+    show(startDivEl);
 })
 
 // Event listener for submitting Hall of Fame listing - initials and score
