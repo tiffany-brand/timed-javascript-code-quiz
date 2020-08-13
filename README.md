@@ -7,6 +7,12 @@ This project is a timed JavaScript code quiz with a high score hall of fame. Use
 
 https://tiffany-brand.github.io/timed-javascript-code-quiz/
 
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+
 ## Requirements
 
 ### User Story
