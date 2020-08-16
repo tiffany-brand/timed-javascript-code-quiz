@@ -11,7 +11,8 @@ View the Timed JavaScript Code Quiz here: https://tiffany-brand.github.io/timed-
 2. [Technologies](#technologies)
 3. [Requirements](#Requirements)
 4. [Screenshots](#Screenshots)
-5. [License](#License)
+5. [Contact](#Contact)
+6. [License](#License)
 
 
 ## Description
@@ -65,6 +66,10 @@ THEN I can save my initials and score
 
 ![halloffame](https://user-images.githubusercontent.com/16748389/87736379-f7d9d180-c7a5-11ea-97a2-d77c71d3181f.JPG)
 
+
+## Contact
+
+- [Tiffany Brand](https://github.com/tiffany-brand)
 
 ## License
 
