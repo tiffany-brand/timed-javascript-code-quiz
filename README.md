@@ -1,13 +1,25 @@
 # Timed JavaScript Code Quiz Application
 ![license](https://img.shields.io/github/license/tiffany-brand/timed-javascript-code-quiz?style=plastic)
 
+## Deployed Application
+
+View the Timed JavaScript Code Quiz here: https://tiffany-brand.github.io/timed-javascript-code-quiz/
+
+## Table of Contents
+
+1. [Description](#Description)
+2. [Technologies](#technologies)
+3. [Requirements](#Requirements)
+4. [Screenshots](#Screenshots)
+5. [License](#License)
+
+
+## Description
+
 This project is a timed JavaScript code quiz with a high score hall of fame. Users click the start button on the first screen. The timer starts and counts down and the user is presented with a series of questions. When a user clicks an answer, a message flashes indicating if they got the answer correct or incorrect, and the next question is shown. 10 seconds is subtracted off the clock for every incorrect answer. When time runs out or the last question is answered, any time remaining is the user's final score. The user can then enter their initials into a form, and the initials and scores are displayed on the Hall of Fame screen. Hall of Fame scores are stored in local storage and displayed in score order, highest scores at the top.
 
-## Link to Deployed Application
 
-https://tiffany-brand.github.io/timed-javascript-code-quiz/
-
-## Technologies Used
+## Technologies
 
 - HTML
 - CSS
